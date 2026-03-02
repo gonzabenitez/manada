@@ -1,0 +1,311 @@
+/* --- CORE SETUP --- */
+:root { 
+    --magenta: #fd66c2; 
+    --black: #1a1a1a; 
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* --- PARTICLE CANVAS LAYER --- */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Sits behind everything */
+    pointer-events: none;
+}
+
+/* --- THE FIX FOR THE FOOTER --- */
+body { 
+    background: var(--black); 
+    color: var(--white); 
+    font-family: sans-serif; 
+    margin: 0; 
+    display: block; /* Removed flex from body to allow container to stretch */
+}
+
+.container { 
+    max-width: 400px; 
+    width: 90%; 
+    margin: 0 auto; /* Centers the container horizontally */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* FORCES it to be the full height of the device */
+    padding: 2rem 0;
+}
+
+/* --- LOGO & TAGLINE --- */
+.logo {
+    width: 60%;
+    max-width: 250px;
+    height: auto;
+    margin: 0 auto 1.5rem auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 2px var(--magenta));
+    animation: 
+        fadeInScale 1.5s ease-out forwards, 
+        pulseGlow 3s ease-in-out infinite 0.8s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 12px var(--magenta)) !important;
+    animation-play-state: paused;
+}
+
+p.tagline {
+    font-weight: bold;
+    font-size: 25px;
+    opacity: 0.65;
+    margin-top: 0;
+}
+
+p.tagline .highlight {
+    color: var(--magenta);
+    animation: pulseWhite 3s ease-in-out infinite 0.8s;
+}
+
+/* --- FORM ELEMENTS --- */
+form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+    margin-top: 1rem; 
+}
+
+input, select, textarea {
+    background: #222222;
+    border: 2px solid #333;
+    padding: 1rem;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--magenta);
+    box-shadow: 0 0 8px rgba(253, 102, 194, 0.3);
+}
+
+button { 
+    background: var(--magenta); 
+    color: var(--black); 
+    border: none; 
+    padding: 1rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    text-transform: uppercase; 
+    border-radius: 4px; 
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+    animation: pulseSoft 3s ease-in-out infinite 0.8s;
+}
+
+button:active { transform: scale(0.98); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* --- SECTIONS & OVERLAY --- */
+#success-section { 
+    display: none; 
+    border: 1px solid var(--magenta); 
+    padding: 2rem; 
+    border-radius: 4px;
+    margin-top: 2rem;
+}
+
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(26, 26, 26, 0.98);
+    display: none;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay-content {
+    max-width: 500px;
+    width: 85%;
+    text-align: left;
+    border-left: 3px solid var(--magenta);
+    padding: 2rem;
+}
+
+
+.overlay-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.overlay-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    color: #cccccc; /* Slightly softer than pure white for readability */
+}
+
+.overlay-content strong {
+    color: var(--white);
+    font-weight: bold;
+}
+
+.overlay-btn {
+    background: transparent;
+    border: 1px solid var(--magenta);
+    color: var(--magenta);
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.overlay-btn:hover {
+    background: var(--magenta);
+    color: var(--black);
+}
+
+.magenta {
+    color: var(--magenta);
+}
+.underline {
+    text-decoration: underline;
+}
+
+/* --- BUTTONS (INFO/CLOSE) --- */
+.info-toggle, .close-btn {
+    position: fixed;
+    width: 50px; height: 50px;
+    border: 3px solid var(--magenta);
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    filter: drop-shadow(0 0 4px var(--magenta));
+    animation: loopScale 6s ease-in-out infinite;
+    font-weight:bold;
+}
+
+.info-toggle { top: 20px; right: 20px; font-size: 30px; color: white; }
+.close-btn { top: 20px; right: 20px; font-size: 24px; color: white; z-index:1100; }
+
+/* --- FOOTER --- */
+.footer {
+    margin-top: auto;
+    padding: 2rem 0;
+    width: 100%;
+}
+
+.footer p {
+    
+    font-size: 0.75rem;
+    color: rgba(253, 102, 194, 0.3);
+    margin: 0;
+}
+
+.footer p a {
+    color: rgba(253, 102, 194, 0.5);
+    text-decoration: none;
+}
+
+.form-label {
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--magenta);
+    margin: 1rem 0 0.5rem 0;
+    opacity: 0.8;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    opacity: 0.;
+}
+
+.checkbox-group label {
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--magenta); /* Hace que el check sea magenta */
+}
+
+
+.status-container {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(253, 102, 194, 0.1);
+    border-top: 3px solid var(--magenta);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.status-text {
+    font-size: 0.7rem !important; /* Overriding tagline size */
+    letter-spacing: 3px;
+    color: var(--magenta);
+    opacity: 0.6;
+    font-weight: bold;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* --- ANIMATIONS --- */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { filter: drop-shadow(0 0 2px var(--magenta)); }
+    50% { filter: drop-shadow(0 0 14px var(--magenta)); }
+}
+
+@keyframes pulseSoft {
+    0%, 100% { box-shadow: 0 0 2px var(--magenta); }
+    50% { box-shadow: 0 0 12px var(--magenta); }
+}
+
+@keyframes loopScale {
+    0%, 100% { opacity: 0.6; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseWhite {
+    0%, 100% { filter: drop-shadow(0 0 1px rgb(255, 137, 196)); }
+    50% { filter: drop-shadow(0 0 3px rgb(255, 137, 196)); }
+}

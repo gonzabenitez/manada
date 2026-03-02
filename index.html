@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MANADA</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/styles/style.css">
+
+</head>
+<body>
+<canvas id="particleCanvas"></canvas>
+    <div class="container">
+
+
+
+
+        <img class="logo" src="assets/img/logo.png">
+            <p class="tagline">Hagamos que las <br><span class="highlight">cosas pasen</span></p>
+        
+        
+        
+                <div class="info-toggle" onclick="toggleAbout()">?</div>
+
+<div id="about-overlay" class="overlay">
+    <div class="overlay-content">
+    <span class="close-btn" onclick="toggleAbout()">×</span>
+    <h2 class="highlight">MANADA</h2>
+    
+    <p>Hay un montón de gente con <span class='underline'>algo increíble</span> para mostrar y una audiencia esperando <span class='underline'>descubrirlo</span>. Solo falta <span class='magenta'>conectarlos</span>.</p>
+    
+    <p><strong>Manada</strong> nace como ese punto de encuentro. Seas artista, tengas un negocio, una idea o simplemente ganas de crear: <span class='magenta'>sumate</span>. </p>
+    <p> Entre todos, hacemos que las <span class='magenta'>cosas pasen.</span></p>
+
+    <p><strong>Buscamos:</strong> Artistas para filmar, negocios para potenciar y locos para colaborar.</p>
+    
+    <button onclick="toggleAbout()" class="overlay-btn">LISTO</button>
+</div>
+</div>
+        
+        
+        
+        
+            <div id="form-section">
+            
+            
+<form id="bridge-form">
+    <input type="text" name="name" maxlength="40" placeholder="Tu nombre o alias" required>
+    
+    <p class="form-label">¿En qué andás? (Podés marcar varias)</p>
+    <div class="checkbox-group">
+        <label><input type="checkbox" name="role" value="artista"> Soy artista</label>
+        <label><input type="checkbox" name="role" value="negocio"> Tengo un negocio</label>
+        <label><input type="checkbox" name="role" value="profesional">Fotografia / Audio / Video</label>
+        <label><input type="checkbox" name="role" value="Colaborador"> Quiero colaborar</label>
+    </div>
+
+    <input type="text" name="link" maxlength="50" placeholder="Mail o WhatsApp para conversar" required>
+    <textarea id="note-textarea" name="note" maxlength="500" placeholder="Contame tu idea o lo qué querés lograr..."></textarea>
+    <div id="char-counter" style="text-align: right; font-size: 10px; color: rgba(253, 102, 194, 0.5); margin-top: -10px;">
+    0 / 500
+</div>
+    <button type="submit" id="submit-btn">Mandale!</button>
+</form>
+        </div>
+
+        <div id="success-section">
+            <h2 style="color: var(--magenta);">Recibido, <span id="user-name-display">artista</span>!</h2>
+            <p>Estate atent@ al: <span id="user-contact-display" class="highlight magenta"> contacto</span></p>
+            <div class="status-container">
+            <div class="spinner"></div>
+                <p class="status-text">Mas novedades en camino</p>
+            </div>
+        </div>
+
+    <div class="footer">
+    <p>2026 - <a href="https://gonzabenitez.github.io" target="_blank" rel="noopener noreferrer"> Gonza Benitez </a></p>    
+    </div>
+    </div>
+
+    <script src="assets/scripts/fetch.js"></script>
+    <script src="assets/scripts/particles.js"></script>
+</body>
+</html>
